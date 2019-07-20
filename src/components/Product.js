@@ -4,7 +4,7 @@ import {ButtonWrapper,ImageWrapper} from './styles';
 import {ProductConsumer} from '../context';
 class Product extends Component {
     render() {
-        const {id, title, img, price} = this.props.product;
+        const {id, title, img, price, inCart} = this.props.product;
         return (
                 <div className="col-9 mx-auto col-md-6 col-lg-3  ">
                     <ProductConsumer>
@@ -26,7 +26,11 @@ class Product extends Component {
                                     {/*product detail*/}
                                     {/*Button*/}
                                     <div className="py-3 text-center text-capitalize">
-                                        <ButtonWrapper>ADD TO CART</ButtonWrapper>
+                                        <ButtonWrapper onClick={() => {
+                                            value.addToCart(id)
+                                        }}>
+                                            {inCart ? 'ADDED TO CART': 'ADD TO CART'}
+                                        </ButtonWrapper>
                                     </div>
                                     {/*end of button*/}
                                 </div>

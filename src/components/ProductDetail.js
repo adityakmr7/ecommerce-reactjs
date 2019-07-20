@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {ProductConsumer} from "../context";
 import {ButtonWrapper} from './styles';
+import {Link} from 'react-router-dom';
 class ProductDetail extends Component {
     render() {
         return (
             <ProductConsumer>
                 {value => {
-                    const {img, title, info,company, price} = value.detailProduct;
+                    console.log(value);
+                    const {img, title, info,company, price, inCart, id} = value.detailProduct;
                     return(
                         <div className="container py-1">
                             {/*TITle*/}
@@ -42,9 +44,11 @@ class ProductDetail extends Component {
                                     <div className="buttons">
                                         <div className="row">
                                             <div className="col-lg-6 text-capitalize">
-                                                <ButtonWrapper>add to cart</ButtonWrapper>
+                                                <ButtonWrapper onClick={() => value.addToCart(id)}>{inCart ? 'ADDED TO CART': 'ADD TO CART'}</ButtonWrapper>
                                             </div>
-                                            <div className="col-lg-6 text-capitalize"><ButtonWrapper>back to products</ButtonWrapper></div>
+                                            <div className="col-lg-6 text-capitalize">
+                                                <Link to="/"><ButtonWrapper>back to product</ButtonWrapper></Link>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
